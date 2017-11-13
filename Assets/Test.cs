@@ -15,18 +15,25 @@ public class Boss
     // 防御用の関数
     public void Defence(int damage)
     {
-        Debug.Log(damage + "のダメージを受けた残りＨＰは"+this.hp);
+        Debug.Log(damage + "のダメージを受けた");
         // 残りhpを減らす
         this.hp -= damage;
     }
 
 
     //(発展課題追記）Magic関数
-    public int Magic(int mag)
+    public void Magic(int mag)
     {
-         //残りmpを減らす
-      int re=mp - mag;
-        return re;
+        mp -= 5;
+        if (mp > 0)
+        {
+            Debug.Log("魔法攻撃をした。残りＭＰは" + mp + "。");
+        }
+        else
+        {
+            Debug.Log("MPが足りないため魔法が使えない。");
+        }
+     
 
     }
 
@@ -41,14 +48,14 @@ public class Test : MonoBehaviour
         int[] array = { 1, 2, 3, 4, 5 };
 
         //(課題追記）配列の各要素の値を順番に表示
-        for (int i = 0; i < 4; i++)
-            {
-                Debug.Log(array[i]);
-            }
+        for (int i = 0; i < 5; i++)
+        {
+            Debug.Log(array[i]);
+        }
 
         //(課題追記）for文を使い、配列の各要素の値を逆順に表示
 
-        for (int j = 4; j >=0; j--)
+        for (int j = 4; j >= 0; j--)
 
         {
             Debug.Log(array[j]);
@@ -62,16 +69,10 @@ public class Test : MonoBehaviour
         // 防御用の関数を呼び出す
         lastboss.Defence(3);
         //（発展課題追記）Magicの関数を呼び出す
-        int num = lastboss.Magic(802);
+        for(int i = 0; i < 11; i++) { lastboss.Magic(5); }
 
-        if (num > 0)
-        {
-            Debug.Log("魔法攻撃をした。残りＭＰは" + num + "。");
-        }
-        else
-        {
-            Debug.Log("MPが足りないため魔法が使えない。");
-        }
+      
+
 
     }
 
@@ -80,4 +81,5 @@ public class Test : MonoBehaviour
     {
 
     }
+
 }
